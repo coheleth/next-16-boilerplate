@@ -3,10 +3,10 @@
 _OKR: Complete at least 4 items per week_
 
 - [x] Pagination
-- [ ] Navigation
+- [x] Navigation
 - [ ] Cookies
 - [ ] Tracking
-- [ ] Blog Page Layout
-- [ ] Custom Metadata
+- [x] Custom Metadata
 - [ ] 404 Page
 - [ ] Explanatory Comments
+- [ ] A Proper README

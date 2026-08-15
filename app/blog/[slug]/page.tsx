@@ -2,7 +2,10 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-import { Markdown } from "@/components/markdown";
+import siteInfo from "@/siteinfo";
+
+import Navbar from "@/components/navbar";
+import Markdown from "@/components/markdown";
 
 const relativePath = "collections/blog";
 const itemsPath = path.join(process.cwd(), relativePath);
@@ -35,7 +38,19 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default async function Post({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const { frontmatter } = await getItem({ params: { slug } });
+  return {
+    title: `${frontmatter.title} - ${siteInfo.title}`,
+  };
+}
+
+export default async function Item({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -44,9 +59,12 @@ export default async function Post({
   const { frontmatter, content } = await getItem({ params: { slug } });
 
   return (
-    <article>
-      <h1>{frontmatter.title}</h1>
-      <Markdown>{content}</Markdown>
-    </article>
+    <>
+      <Navbar pageName="blog" />
+      <article>
+        <h1>{frontmatter.title}</h1>
+        <Markdown>{content}</Markdown>
+      </article>
+    </>
   );
 }

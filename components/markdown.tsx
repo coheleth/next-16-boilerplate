@@ -32,7 +32,7 @@ const CodeBlock = ({
   );
 };
 
-export function Markdown({ children }: { children: string }) {
+export default function Markdown({ children }: { children: string }) {
   return (
     <ReactMarkdown
       components={{

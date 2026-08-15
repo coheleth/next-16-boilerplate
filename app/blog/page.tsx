@@ -6,16 +6,18 @@ import Link from "next/link";
 import { Pagination } from "@/components/pagination";
 
 import type { Frontmatter } from "@/collections/collections";
+import Navbar from "@/components/navbar";
 
 const itemsPath = path.join(process.cwd(), "collections/blog");
 
-async function getItems({
-  params: { pageNumber, searchQuery, tagFilter },
+export async function getItems({
+  params: { pageNumber, searchQuery, tagFilter, itemsPerPage = 3 },
 }: {
   params: {
     pageNumber: string;
     searchQuery: string;
     tagFilter: string;
+    itemsPerPage?: number;
   };
 }) {
   const page = parseInt(pageNumber);
@@ -57,8 +59,8 @@ async function getItems({
   }
 
   const pageItems = [];
-  for (let i = 0; i < items.length; i += 3) {
-    pageItems.push(items.slice(i, i + 3));
+  for (let i = 0; i < items.length; i += itemsPerPage) {
+    pageItems.push(items.slice(i, i + itemsPerPage));
   }
 
   return {
@@ -66,6 +68,36 @@ async function getItems({
     pages: pageItems.length,
     currentPage: page,
   };
+}
+
+export async function generateMetadata(
+  props: Readonly<{
+    searchParams?: Promise<{
+      query?: string;
+      tag?: string;
+      page?: string;
+    }>;
+  }>,
+) {
+  const searchParams = await props.searchParams;
+  const pageNumber = Number(searchParams?.page) || 1;
+  const searchQuery = searchParams?.query || "";
+  const tagFilter = searchParams?.tag || "";
+
+  let pageName = "Blog";
+  let tagName = "";
+
+  if (tagFilter != "") {
+    pageName = "Blog posts";
+    tagName = `with the tag "${tagFilter}"`;
+  }
+
+  if (searchQuery != "") {
+    pageName = `Search results for "${searchQuery}"`;
+  }
+
+  const title = [pageName, tagName, `\u2014 page ${pageNumber}`].join(" ");
+  return { title: title };
 }
 
 export default async function Blog(
@@ -88,6 +120,7 @@ export default async function Blog(
 
   return (
     <>
+      <Navbar pageName="blog" />
       {items?.map(
         ({ slug, frontmatter }: { slug: string; frontmatter: Frontmatter }) => (
           <Link key={slug} href={`blog/${slug}`}>

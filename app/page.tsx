@@ -1,9 +1,31 @@
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+import Navbar from "@/components/navbar";
+import { getItems } from "@/app/blog/page";
+
+import { Frontmatter } from "@/collections/collections";
+
+export default async function Home() {
+  const { items, pages, currentPage } = await getItems({
+    params: {
+      pageNumber: "1",
+      searchQuery: "",
+      tagFilter: "",
+      itemsPerPage: 3,
+    },
+  });
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start"></main>
-    </div>
+    <>
+      <Navbar pageName="home" />
+      {items?.map(
+        ({ slug, frontmatter }: { slug: string; frontmatter: Frontmatter }) => (
+          <Link key={slug} href={`blog/${slug}`}>
+            {frontmatter.title}
+          </Link>
+        ),
+      )}
+    </>
   );
 }

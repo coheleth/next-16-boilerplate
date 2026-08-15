@@ -3,6 +3,8 @@ import path from "path";
 import matter from "gray-matter";
 import Link from "next/link";
 
+import { Pagination } from "@/components/pagination";
+
 import type { Frontmatter } from "@/collections/collections";
 
 const itemsPath = path.join(process.cwd(), "collections/blog");
@@ -93,6 +95,12 @@ export default async function Blog(
           </Link>
         ),
       )}
+      <Pagination
+        pages={pages}
+        currentPage={currentPage}
+        rootHref={"blog"}
+        query={searchQuery}
+      />
     </>
   );
 }

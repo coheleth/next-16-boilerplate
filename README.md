@@ -1,12 +1,20 @@
-# TO DO (in no particular order):
+# TO DO:
 
-_OKR: Complete at least 4 items per week_
+_OKR: Complete at least 5 items per week_
 
 - [x] Pagination
 - [x] Navigation
+- [x] Tags
+- [x] Search
+- [x] Custom Metadata
+- [ ] Explanatory Comments
+- [ ] Sitemap and robots.txt
 - [ ] Cookies
 - [ ] Tracking
-- [x] Custom Metadata
-- [ ] 404 Page
-- [ ] Explanatory Comments
+- [ ] Layouts:
+  - [ ] Homepage
+  - [ ] Blog index
+  - [ ] Blog post
+  - [ ] 404 Page
+- [ ] Mobile layouts
 - [ ] A Proper README

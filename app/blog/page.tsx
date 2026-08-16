@@ -7,6 +7,7 @@ import { Pagination } from "@/components/pagination";
 
 import type { Frontmatter } from "@/collections/collections";
 import Navbar from "@/components/navbar";
+import { SearchBox } from "@/components/searchbox";
 
 const itemsPath = path.join(process.cwd(), "collections/blog");
 
@@ -113,14 +114,17 @@ export default async function Blog(
   const pageNumber = (Number(searchParams?.page) || 1).toString();
   const searchQuery = searchParams?.query || "";
   const tagFilter = searchParams?.tag || "";
+  const itemsPerPage = 4;
 
   const { items, pages, currentPage } = await getItems({
-    params: { pageNumber, searchQuery, tagFilter },
+    params: { pageNumber, searchQuery, tagFilter, itemsPerPage },
   });
 
   return (
     <>
       <Navbar pageName="blog" />
+
+      <SearchBox placeholder="Search blog..." pathname="/blog" />
       {items?.map(
         ({ slug, frontmatter }: { slug: string; frontmatter: Frontmatter }) => (
           <Link key={slug} href={`blog/${slug}`}>
@@ -128,6 +132,7 @@ export default async function Blog(
           </Link>
         ),
       )}
+
       <Pagination
         pages={pages}
         currentPage={currentPage}

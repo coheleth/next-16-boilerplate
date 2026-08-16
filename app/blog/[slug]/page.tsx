@@ -6,6 +6,7 @@ import siteInfo from "@/siteinfo";
 
 import Navbar from "@/components/navbar";
 import Markdown from "@/components/markdown";
+import Link from "next/link";
 
 const relativePath = "collections/blog";
 const itemsPath = path.join(process.cwd(), relativePath);
@@ -63,6 +64,12 @@ export default async function Item({
       <Navbar pageName="blog" />
       <article>
         <h1>{frontmatter.title}</h1>
+        <em>{frontmatter.summary}</em>
+        {frontmatter.tags?.map((tag: string) => (
+          <Link href={`/blog?tag=${tag}`} key={tag}>
+            {tag}
+          </Link>
+        ))}
         <Markdown>{content}</Markdown>
       </article>
     </>

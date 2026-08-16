@@ -12,10 +12,8 @@ function NavLink({
   currentPage: string;
   children: React.ReactNode;
 }) {
-  let className = "";
-  if (pageName == currentPage) className = "underline";
   return (
-    <Link href={href} className={className}>
+    <Link href={href} className={pageName == currentPage ? "underline" : ""}>
       {children}
     </Link>
   );
@@ -23,9 +21,9 @@ function NavLink({
 
 export default function Navbar({ pageName }: { pageName: string }) {
   return (
-    <>
+    <div className="flex justify-between p-2">
       <Link href={"/"}>{siteInfo.title}</Link>
-      <nav>
+      <nav className="flex gap-2">
         <NavLink href="/" pageName="home" currentPage={pageName}>
           Home
         </NavLink>
@@ -33,6 +31,6 @@ export default function Navbar({ pageName }: { pageName: string }) {
           Blog
         </NavLink>
       </nav>
-    </>
+    </div>
   );
 }

@@ -7,8 +7,8 @@ _OKR: Complete at least 5 items per week_
 - [x] Tags
 - [x] Search
 - [x] Custom Metadata
+- [x] Sitemap and robots.txt
 - [ ] Explanatory Comments
-- [ ] Sitemap and robots.txt
 - [ ] Cookies
 - [ ] Tracking
 - [ ] Layouts:

@@ -44,7 +44,7 @@ export default function Pagination(
   return (
     <>
       {pageArray.length > 1 && (
-        <div>
+        <div className="p-2 flex gap-2">
           {currentPage > 1 && (
             <Link
               index={(currentPage - 1).toString()}

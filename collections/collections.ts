@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { notFound } from "next/navigation";
 
 export type Frontmatter = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -106,7 +107,13 @@ export async function getItem({
   params: { collectionPath: string; slug: string };
 }) {
   const itemsPath = path.join(process.cwd(), collectionPath);
-  const fileName = fs.readFileSync(`${itemsPath}/${slug}.md`, "utf-8");
+  const filePath = `${itemsPath}/${slug}.md`;
+
+  if (!fs.existsSync(filePath)) {
+    notFound();
+  }
+
+  const fileName = fs.readFileSync(filePath, "utf-8");
 
   const { data: frontmatter, content } = matter(fileName);
 

@@ -50,9 +50,12 @@ export default async function Item({
   return (
     <>
       <Navbar pageName="blog" />
-      <article>
-        <h1>{frontmatter.title}</h1>
-        <em>{frontmatter.summary}</em>
+      <article className="p-2">
+        <div className="mb-4">
+          <h1 className="text-2xl">{frontmatter.title}</h1>
+          <em>{frontmatter.summary}</em>
+        </div>
+
         {frontmatter.tags?.map((tag: string) => (
           <Link href={`/blog?tag=${tag}`} key={tag}>
             {tag}

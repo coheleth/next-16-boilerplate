@@ -2,8 +2,6 @@ import { ComponentProps } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
-import style from "@/styles/Markdown.module.scss";
-
 interface CodeBlockProps extends ComponentProps<"code"> {
   inline: boolean;
 }
@@ -11,7 +9,9 @@ const CodeBlock = ({
   className,
   children,
   inline,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   style,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ref,
   ...props
 }: CodeBlockProps) => {

@@ -40,7 +40,7 @@ export function SearchBox({
       className={`flex max-w-min ${className}`}
     >
       <input
-        className="searchbar border border-white"
+        className="searchbar border-b-1 border-white p-1"
         placeholder={placeholder}
         defaultValue={searchParams.get("query")?.toString()}
       />
@@ -48,7 +48,7 @@ export function SearchBox({
         type="submit"
         value="Search"
         title="Search"
-        className="cursor-pointer border border-white"
+        className="cursor-pointer border border-white p-1"
       />
     </form>
   );

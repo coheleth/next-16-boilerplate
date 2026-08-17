@@ -58,7 +58,7 @@ export default async function Blog(
   const tagFilter = searchParams?.tag || "";
 
   const pageNumber = (Number(searchParams?.page) || 1).toString();
-  const itemsPerPage = 4;
+  const itemsPerPage = 2;
 
   const { items, pages, currentPage } = await getFilteredItems({
     params: {
@@ -74,14 +74,29 @@ export default async function Blog(
     <>
       <Navbar pageName="blog" />
 
-      <SearchBox placeholder="Search blog..." pathname="/blog" />
-      {items?.map(
-        ({ slug, frontmatter }: { slug: string; frontmatter: Frontmatter }) => (
-          <Link key={slug} href={`blog/${slug}`}>
-            {frontmatter.title}
-          </Link>
-        ),
-      )}
+      <SearchBox
+        placeholder="Search blog..."
+        pathname="/blog"
+        className="m-2"
+      />
+
+      <ul className="p-2">
+        {items?.map(
+          ({
+            slug,
+            frontmatter,
+          }: {
+            slug: string;
+            frontmatter: Frontmatter;
+          }) => (
+            <li key={slug}>
+              <article>
+                <Link href={`blog/${slug}`}>{frontmatter.title}</Link>
+              </article>
+            </li>
+          ),
+        )}
+      </ul>
 
       <Pagination
         pages={pages}

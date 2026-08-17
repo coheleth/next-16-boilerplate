@@ -1,25 +1,10 @@
+//----------------------------------------------------------------------------
+// Sitemap.xml file generator. Be sure to modify the collections as needed.
+//----------------------------------------------------------------------------
+
 import type { MetadataRoute } from "next";
 
-import fs from "fs";
-import matter from "gray-matter";
-
-async function getItems(collectionPath: string) {
-  const files = fs.readdirSync(collectionPath);
-  const posts = files.map((fileName) => {
-    const slug = fileName.replace(".md", "");
-
-    const readFile = fs.readFileSync(`${collectionPath}/${fileName}`, "utf-8");
-
-    const { data: frontmatter } = matter(readFile);
-
-    return {
-      slug,
-      frontmatter,
-    };
-  });
-
-  return posts;
-}
+import { getItems } from "@/collections/collections";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getItems("collections/blog");

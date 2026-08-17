@@ -8,7 +8,7 @@ _OKR: Complete at least 5 items per week_
 - [x] Search
 - [x] Custom Metadata
 - [x] Sitemap and robots.txt
-- [ ] Explanatory Comments
+- [x] Basic Explanatory Comments
 - [ ] Cookies
 - [ ] Tracking
 - [ ] Layouts:
@@ -16,5 +16,5 @@ _OKR: Complete at least 5 items per week_
   - [ ] Blog index
   - [ ] Blog post
   - [ ] 404 Page
-- [ ] Mobile layouts
+  - [ ] Mobile layouts
 - [ ] A Proper README

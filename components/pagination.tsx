@@ -23,7 +23,7 @@ function Link({
   );
 }
 
-export function Pagination(
+export default function Pagination(
   props: Readonly<{
     pages: number;
     currentPage: number;

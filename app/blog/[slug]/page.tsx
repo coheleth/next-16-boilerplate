@@ -1,35 +1,21 @@
+//----------------------------------------------------------------------------
+// Blog post page, with basic markdown formatting and code block
+// syntax highlighting.
+//----------------------------------------------------------------------------
+
 import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import Link from "next/link";
 
 import siteInfo from "@/siteinfo";
 
 import Navbar from "@/components/navbar";
 import Markdown from "@/components/markdown";
-import Link from "next/link";
+import { getItem } from "@/collections/collections";
 
-const relativePath = "collections/blog";
-const itemsPath = path.join(process.cwd(), relativePath);
-
-type PostParams = {
-  params: {
-    slug: string;
-  };
-};
-
-async function getItem({ params: { slug } }: PostParams) {
-  const fileName = fs.readFileSync(`${itemsPath}/${slug}.md`, "utf-8");
-
-  const { data: frontmatter, content } = matter(fileName);
-
-  return {
-    frontmatter: frontmatter,
-    content: content,
-  };
-}
+const collectionPath = "collections/blog";
 
 export async function generateStaticParams() {
-  const files = fs.readdirSync(relativePath);
+  const files = fs.readdirSync(collectionPath);
   const paths = files.map((fileName) => ({
     params: {
       slug: fileName.replace(".md", ""),
@@ -45,7 +31,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { frontmatter } = await getItem({ params: { slug } });
+  const { frontmatter } = await getItem({ params: { collectionPath, slug } });
   return {
     title: `${frontmatter.title} - ${siteInfo.title}`,
   };
@@ -57,7 +43,9 @@ export default async function Item({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { frontmatter, content } = await getItem({ params: { slug } });
+  const { frontmatter, content } = await getItem({
+    params: { collectionPath, slug },
+  });
 
   return (
     <>

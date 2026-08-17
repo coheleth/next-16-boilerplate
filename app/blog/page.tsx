@@ -1,75 +1,18 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+//----------------------------------------------------------------------------
+// Blog post listing page, filtering posts by search query and tag.
+// Features a post list and search bar.
+//----------------------------------------------------------------------------
+
 import Link from "next/link";
 
-import { Pagination } from "@/components/pagination";
-
-import type { Frontmatter } from "@/collections/collections";
+import Pagination from "@/components/pagination";
 import Navbar from "@/components/navbar";
 import { SearchBox } from "@/components/searchbox";
+import { getFilteredItems } from "@/collections/collections";
 
-const itemsPath = path.join(process.cwd(), "collections/blog");
+import type { Frontmatter } from "@/collections/collections";
 
-export async function getItems({
-  params: { pageNumber, searchQuery, tagFilter, itemsPerPage = 3 },
-}: {
-  params: {
-    pageNumber: string;
-    searchQuery: string;
-    tagFilter: string;
-    itemsPerPage?: number;
-  };
-}) {
-  const page = parseInt(pageNumber);
-
-  const files = fs.readdirSync(itemsPath);
-
-  const allItems = files.map((fileName) => {
-    const slug = fileName.replace(".md", "");
-
-    const readFile = fs.readFileSync(`${itemsPath}/${fileName}`, "utf-8");
-
-    const { data: frontmatter } = matter(readFile);
-
-    return {
-      slug,
-      frontmatter,
-    };
-  });
-
-  let items = allItems;
-
-  if (searchQuery != "") {
-    items = items.filter((post) => {
-      return [
-        post.frontmatter.title || "",
-        post.frontmatter.summary || "",
-        (post.frontmatter.tags || []).join(" "),
-      ]
-        .join(" ")
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-    });
-  }
-
-  if (tagFilter != "") {
-    items = items.filter((post) => {
-      return (post.frontmatter.tags || []).includes(tagFilter);
-    });
-  }
-
-  const pageItems = [];
-  for (let i = 0; i < items.length; i += itemsPerPage) {
-    pageItems.push(items.slice(i, i + itemsPerPage));
-  }
-
-  return {
-    items: pageItems[page - 1],
-    pages: pageItems.length,
-    currentPage: page,
-  };
-}
+const collectionPath = "collections/blog";
 
 export async function generateMetadata(
   props: Readonly<{
@@ -111,13 +54,20 @@ export default async function Blog(
   }>,
 ) {
   const searchParams = await props.searchParams;
-  const pageNumber = (Number(searchParams?.page) || 1).toString();
   const searchQuery = searchParams?.query || "";
   const tagFilter = searchParams?.tag || "";
+
+  const pageNumber = (Number(searchParams?.page) || 1).toString();
   const itemsPerPage = 4;
 
-  const { items, pages, currentPage } = await getItems({
-    params: { pageNumber, searchQuery, tagFilter, itemsPerPage },
+  const { items, pages, currentPage } = await getFilteredItems({
+    params: {
+      collectionPath,
+      pageNumber,
+      searchQuery,
+      tagFilter,
+      itemsPerPage,
+    },
   });
 
   return (

@@ -1,6 +1,4 @@
-# TO DO:
-
-_OKR: Complete at least 5 items per week_
+# Roadmap:
 
 - [x] Pagination
 - [x] Navigation
@@ -9,12 +7,11 @@ _OKR: Complete at least 5 items per week_
 - [x] Custom Metadata
 - [x] Sitemap and robots.txt
 - [x] Basic Explanatory Comments
+- [x] 404 Page
+- [x] Code Block Syntax Highlighting
+- [ ] Mobile Nav Menu
+- [ ] Skip Link
 - [ ] Cookies
 - [ ] Tracking
-- [ ] Skip link
-- [ ] Mobile Layouts:
-  - [ ] Homepage
-  - [ ] Blog index
-  - [ ] Blog post
-- [ ] 404 Page
+- [ ] Light/Dark Mode Switch
 - [ ] A Proper README

@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { gruvboxDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { materialDark as theme } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 interface CodeBlockProps extends ComponentProps<"code"> {
   inline: boolean;
@@ -21,8 +21,8 @@ const CodeBlock = ({
     <SyntaxHighlighter
       language={match[1]}
       PreTag="div"
-      style={gruvboxDark}
-      showLineNumbers={true}
+      style={theme}
+      showLineNumbers={false}
       wrapLongLines={true}
       {...props}
     >

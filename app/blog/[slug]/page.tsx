@@ -48,21 +48,18 @@ export default async function Item({
   });
 
   return (
-    <>
-      <Navbar pageName="blog" />
-      <article className="p-2">
-        <div className="mb-4">
-          <h1 className="text-2xl">{frontmatter.title}</h1>
-          <em>{frontmatter.summary}</em>
-        </div>
+    <article className="w-3/5 min-w-2xl">
+      <div className="mb-4">
+        <h1 className="text-2xl">{frontmatter.title}</h1>
+        <em>{frontmatter.summary}</em>
+      </div>
 
-        {frontmatter.tags?.map((tag: string) => (
-          <Link href={`/blog?tag=${tag}`} key={tag}>
-            {tag}
-          </Link>
-        ))}
-        <Markdown>{content}</Markdown>
-      </article>
-    </>
+      {frontmatter.tags?.map((tag: string) => (
+        <Link href={`/blog?tag=${tag}`} key={tag}>
+          {tag}
+        </Link>
+      ))}
+      <Markdown>{content}</Markdown>
+    </article>
   );
 }

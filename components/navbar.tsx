@@ -1,4 +1,7 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import siteInfo from "@/siteinfo";
 
 function NavLink({
@@ -19,12 +22,15 @@ function NavLink({
   );
 }
 
-export default function Navbar({ pageName }: { pageName: string }) {
+export default function Navbar() {
+  const pathname = usePathname();
+  const pageName = pathname.split("/")[1];
+
   return (
     <div className="flex justify-between p-2">
       <Link href={"/"}>{siteInfo.title}</Link>
       <nav className="flex gap-2">
-        <NavLink href="/" pageName="home" currentPage={pageName}>
+        <NavLink href="/" pageName="" currentPage={pageName}>
           Home
         </NavLink>
         <NavLink href="/blog" pageName="blog" currentPage={pageName}>

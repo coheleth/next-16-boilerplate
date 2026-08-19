@@ -72,15 +72,9 @@ export default async function Blog(
 
   return (
     <>
-      <Navbar pageName="blog" />
+      <SearchBox placeholder="Search blog..." pathname="/blog" />
 
-      <SearchBox
-        placeholder="Search blog..."
-        pathname="/blog"
-        className="m-2"
-      />
-
-      <ul className="p-2">
+      <ul>
         {items?.map(
           ({
             slug,

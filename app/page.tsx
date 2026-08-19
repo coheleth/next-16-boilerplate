@@ -25,8 +25,7 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar pageName="home" />
-      <ul className="p-2">
+      <ul>
         {items?.map(
           ({
             slug,
@@ -36,9 +35,9 @@ export default async function Home() {
             frontmatter: Frontmatter;
           }) => (
             <li key={slug}>
-              <article>
-                <Link href={`blog/${slug}`}>{frontmatter.title}</Link>
-              </article>
+              <Link href={`blog/${slug}`}>
+                <article>{frontmatter.title}</article>
+              </Link>
             </li>
           ),
         )}

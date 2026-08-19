@@ -6,7 +6,6 @@
 import Link from "next/link";
 
 import Pagination from "@/components/pagination";
-import Navbar from "@/components/navbar";
 import { SearchBox } from "@/components/searchbox";
 import { getFilteredItems } from "@/collections/collections";
 

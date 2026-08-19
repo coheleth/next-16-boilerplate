@@ -16,7 +16,10 @@ function NavLink({
   children: React.ReactNode;
 }) {
   return (
-    <Link href={href} className={pageName == currentPage ? "underline" : ""}>
+    <Link
+      href={href}
+      className={pageName == currentPage ? "underline" : "no-underline"}
+    >
       {children}
     </Link>
   );
@@ -28,7 +31,9 @@ export default function Navbar() {
 
   return (
     <div className="flex justify-between p-2">
-      <Link href={"/"}>{siteInfo.title}</Link>
+      <Link href={"/"} className="no-underline">
+        {siteInfo.title}
+      </Link>
       <nav className="flex gap-2">
         <NavLink href="/" pageName="" currentPage={pageName}>
           Home

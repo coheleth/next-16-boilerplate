@@ -2,7 +2,7 @@
 
 This is a simple blog next.js 16 boilerplate.
 
-<!-- Demo: https://coheleths-next-boilerplate.vercel.app -->
+Demo: https://coheleths-next-16-boilerplate.vercel.app
 
 ## Features
 
@@ -10,12 +10,13 @@ This is a simple blog next.js 16 boilerplate.
 - Typescript support
 - Basic SEO
   - Configurable metadata
-  - Sitemap
+  - Sitemap.xml
   - Robots.txt
 - Basic components:
   - Navigation bar
   - Search bar
   - Mobile navigation menu
+  - Skip link
 - Blog:
   - Markdown posts
   - Syntax highlighting with Prism
@@ -37,22 +38,4 @@ Then run in development mode:
 $ yarn dev
 ```
 
-<!-- Visit the [live demo](https://coheleths-next-boilerplate.vercel.app), or clone the repo and open [http://localhost:3000](http://localhost:3000) with your browser to see the result. -->
-
-## To-do:
-
-- [x] Pagination
-- [x] Navigation
-- [x] Tags
-- [x] Search
-- [x] Custom Metadata
-- [x] Sitemap and robots.txt
-- [x] Basic Explanatory Comments
-- [x] 404 Page
-- [x] Code Block Syntax Highlighting
-- [x] Skip Link
-- [ ] Mobile Nav Menu
-- [ ] Cookies
-- [ ] Live Demo
-- [ ] Light/Dark Mode Switch
-- [ ] Post Thumbnails
+Visit the [live demo](https://coheleths-next-16-boilerplate.vercel.app), or clone the repo and open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

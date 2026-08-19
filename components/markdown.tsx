@@ -23,6 +23,7 @@ const CodeBlock = ({
       PreTag="div"
       style={theme}
       showLineNumbers={false}
+      wrapLines={true}
       wrapLongLines={true}
       {...props}
     >

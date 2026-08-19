@@ -8,7 +8,6 @@ import Link from "next/link";
 
 import siteInfo from "@/siteinfo";
 
-import Navbar from "@/components/navbar";
 import Markdown from "@/components/markdown";
 import { getItem } from "@/collections/collections";
 
@@ -48,17 +47,19 @@ export default async function Item({
   });
 
   return (
-    <article className="w-3/5 min-w-2xl">
+    <article className="m-auto xl:mr-[20vw] max-w-2xl min-w-l">
       <div className="mb-4">
         <h1 className="text-2xl">{frontmatter.title}</h1>
         <em>{frontmatter.summary}</em>
+        <div className="space-x-2">
+          {frontmatter.tags?.map((tag: string) => (
+            <Link href={`/blog?tag=${tag}`} key={tag}>
+              {tag}
+            </Link>
+          ))}
+        </div>
       </div>
 
-      {frontmatter.tags?.map((tag: string) => (
-        <Link href={`/blog?tag=${tag}`} key={tag}>
-          {tag}
-        </Link>
-      ))}
       <Markdown>{content}</Markdown>
     </article>
   );

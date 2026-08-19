@@ -6,7 +6,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Navbar from "@/components/navbar";
 import { getFilteredItems } from "@/collections/collections";
 
 import { Frontmatter } from "@/collections/collections";
@@ -25,6 +24,7 @@ export default async function Home() {
 
   return (
     <>
+      Latest posts:
       <ul>
         {items?.map(
           ({

@@ -7,7 +7,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import siteInfo from "@/siteinfo";
 import "@/app/styles/globals.css";
-import Link from "next/link";
 import SkipLink from "@/components/skiplink";
 import Navbar from "@/components/navbar";
 
@@ -32,8 +31,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <header>
+      <body className="min-h-full">
+        <header className="sticky top-0 w-full bg-(--color-background) z-10 ">
           <SkipLink />
           <Navbar />
         </header>
